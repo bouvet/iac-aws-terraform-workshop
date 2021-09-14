@@ -77,6 +77,8 @@ resource "aws_s3_bucket_notification" "file_uploaded_notification" {
 }
 
 # Lecture 3:
+# Create a DynamoDB table and use lambda function to write data from file uploaded to S3 into the DynamoDB table.
+/*
 resource "aws_dynamodb_table" "my_dynamodb_table" {
   name = var.dynamodb_table_name
   billing_mode = "PAY_PER_REQUEST"
@@ -116,3 +118,7 @@ resource "aws_iam_role_policy_attachment" "dynamodb_policy_attachment" {
   policy_arn = aws_iam_policy.my_lambda_additional_policies.arn
   role = aws_iam_role.iam_for_lambda.name
 }
+*/
+
+# Lecture 4:
+# Create an API Gateway, create a lambda function that can query the DynamoDB table for objects, and connect the function to the API Gateway.
