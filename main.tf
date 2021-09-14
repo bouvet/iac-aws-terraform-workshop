@@ -8,6 +8,8 @@ resource "aws_s3_bucket" "my_first_bucket" {
 
 # Lecture 2:
 # Make use of module and create a lambda function
+
+/*
 resource "aws_iam_role" "iam_for_lambda" {
   name = "iam_for_lambda"
 
@@ -75,9 +77,12 @@ resource "aws_s3_bucket_notification" "file_uploaded_notification" {
 
   depends_on = [aws_lambda_permission.allow_bucket]
 }
+*/
+
 
 # Lecture 3:
 # Create a DynamoDB table and use lambda function to write data from file uploaded to S3 into the DynamoDB table.
+
 /*
 resource "aws_dynamodb_table" "my_dynamodb_table" {
   name = var.dynamodb_table_name
