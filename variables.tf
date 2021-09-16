@@ -8,7 +8,7 @@ variable "dynamodb_table_name" {
   default = "<YOUR_TABLE_NAME>"
 }
 
-variable "lambda_function_code_path" {
+variable "s3_consumer_lambda_function_code_path" {
   description = "Local path to the lambda function code"
-  default = "./lambda_code_lecture_2"
+  default = "./lambda_code/lecture_2"
 }
