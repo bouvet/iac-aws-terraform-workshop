@@ -1,7 +1,6 @@
 # Lecture 2:
-# Make use of module and create a lambda function
 
-
+/*
 resource "aws_iam_role" "s3_consumer_lambda_iam_role" {
   name = "iam_for_lambda"
 
@@ -69,4 +68,3 @@ resource "aws_s3_bucket_notification" "file_uploaded_notification" {
 
   depends_on = [aws_lambda_permission.s3_invoke_lambda_permission]
 }
-
