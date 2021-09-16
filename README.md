@@ -1,4 +1,7 @@
 # IaC AWS Terraform Workshop
+
+> WORK IN PROGRESS
+
 This repo contains code used for a workshop about IaC using Terraform.
 
 ## prerequisite
