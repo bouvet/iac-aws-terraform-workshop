@@ -40,3 +40,4 @@ resource "aws_iam_role_policy_attachment" "dynamodb_policy_attachment" {
   policy_arn = aws_iam_policy.s3_consumer_lambda_additional_policies.arn
   role = aws_iam_role.s3_consumer_lambda_iam_role.name
 }
+*/
