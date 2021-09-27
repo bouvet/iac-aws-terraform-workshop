@@ -11,6 +11,8 @@ This repo contains code used for a workshop about IaC using Terraform.
 - AWS CLI:
   - [Download the CLI for your OS](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
   - You should be able to run: `aws --version`
+- AWS Console:
+  - Login to the AWS console: https://console.aws.amazon.com/
 - Install some form of terraform extension for your idea. This makes it easier to find any syntax errors.
   - VS Code: https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform
   - IntelliJ plugin: https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl
@@ -21,15 +23,16 @@ In this lecture you should configure the AWS CLI, initiate terraform and deploy 
 
 1. Configure aws: 
    1. Run `aws configure` 
-   2. Type in your personal IAM credentials. 
+   2. Type in your personal IAM credentials (`Access Key ID` and `Secret Access Key`). 
    3. When asked about default region type: `eu-central-1` and set default output format to `json`.
 2. Clone this repository
 3. Open the code in your editor of choice.
 4. Set S3 bucket name: Open the [variables.tf](variables.tf) file and change the `s3_bucket_name` value from `<YOUR_BUCKET_NAME>`, to whatever you want to call your S3 bucket.
-5. Initiate Terraform: Open your terminal in the project folder and run `terraform init`.
-6. Preview what will happen if you deploy this code: `terraform plan`.
-7. Deploy your S3 bucket: `terraform apply` (when asked if you want to apply this code, type `yes` and hit enter).
-8. Login to the AWS Console and find your S3 bucket. Try uploading any text file to this bucket.
+5. Open [lecture_1.tf](lecture_1.tf) and read the instructions to set the S3 bucket name.
+6. Initiate Terraform: Open your terminal in the project folder and run `terraform init`.
+7. Preview what will happen if you deploy this code: `terraform plan`.
+8. Deploy your S3 bucket: `terraform apply` (when asked if you want to apply this code, type `yes` and hit enter).
+9. Login to the [AWS Console and find your S3 bucket](https://s3.console.aws.amazon.com/s3/home?region=eu-central-1). Try uploading any text file to this bucket.
 
 
 ### Lecture 2
@@ -37,13 +40,14 @@ In this lecture we will create a lambda function that will run every time a file
 
 1. Uncomment the code in [lecture_2.tf](lecture_2.tf).
 2. Open the the [variables.tf](variables.tf) file and make sure the `s3_consumer_lambda_function_code_path` variable is pointing to the folder containing the python code for lecture 2. The path should be as follows: `./lambda_code/lecture_2`.
-3. Preview the changes: `terraform plan`
-4. Deploy changes: `terraform apply`
-5. Upload a new file to the S3 bucket.
-6. View logs:
+3. Go to [lecture_2.tf](lecture_2.tf), find the aws lambda function configuration, under environment variables update the S3 bucket variable to point to the bucket name variable in [variables.tf](variables.tf).
+4. Preview the changes: `terraform plan`
+5. Deploy changes: `terraform apply`
+6. Upload a new file to the S3 bucket.
+7. View logs:
    1. Open the Lambda function in the AWS Console. 
    2. Click on monitoring and view the Lambda Function logs in CloudWatch. 
-   3. Open the CloudWatch log stream, and you should see that our application has run and printed the upload event from S3.
+   3. Open the CloudWatch log stream, and you should see that our application has run and printed a message saying: `success!!!`.
 
 
 ### Lecture 3

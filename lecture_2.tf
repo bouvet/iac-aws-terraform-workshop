@@ -1,6 +1,6 @@
 # Lecture 2:
 
-/*
+
 resource "aws_iam_role" "s3_consumer_lambda_iam_role" {
   name = "iam_for_lambda"
 
@@ -29,11 +29,11 @@ resource "aws_iam_role_policy_attachment" "s3_consumer_lambda_basic_execution_ro
 data "archive_file" "s3_consumer_lambda_zip" {
   type = "zip"
   source_dir = var.s3_consumer_lambda_function_code_path
-  output_path = "${path.module}/lambda.zip"
+  output_path = "${var.s3_consumer_lambda_function_code_path}/lambda.zip"
 }
 
 resource "aws_lambda_function" "s3_consumer_lambda" {
-  filename      = "${path.module}/lambda.zip"
+  filename      = "${var.s3_consumer_lambda_function_code_path}/lambda.zip"
   function_name = "my_lambda"
   role          = aws_iam_role.s3_consumer_lambda_iam_role.arn
   handler       = "my_lambda.lambda_handler"
@@ -45,7 +45,7 @@ resource "aws_lambda_function" "s3_consumer_lambda" {
   environment {
     variables = {
       DB_NAME = var.dynamodb_table_name
-      S3_BUCKET_NAME = var.s3_bucket_name
+      S3_BUCKET_NAME = ""
     }
   }
 }
