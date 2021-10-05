@@ -27,8 +27,8 @@ resource "aws_iam_role_policy_attachment" "s3_consumer_lambda_basic_execution_ro
 }
 
 data "archive_file" "s3_consumer_lambda_zip" {
-  type = "zip"
-  source_dir = var.s3_consumer_lambda_function_code_path
+  type        = "zip"
+  source_dir  = var.s3_consumer_lambda_function_code_path
   output_path = "${var.s3_consumer_lambda_function_code_path}/lambda.zip"
 }
 
@@ -44,8 +44,8 @@ resource "aws_lambda_function" "s3_consumer_lambda" {
 
   environment {
     variables = {
-      DB_NAME = var.dynamodb_table_name
-      S3_BUCKET_NAME = ""
+      DB_NAME        = var.dynamodb_table_name
+      S3_BUCKET_NAME = var.s3_bucket_name
     }
   }
 }
@@ -68,3 +68,4 @@ resource "aws_s3_bucket_notification" "file_uploaded_notification" {
 
   depends_on = [aws_lambda_permission.s3_invoke_lambda_permission]
 }
+

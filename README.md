@@ -41,10 +41,11 @@ In this lecture we will create a lambda function that will run every time a file
 1. Uncomment the code in [lecture_2.tf](lecture_2.tf).
 2. Open the the [variables.tf](variables.tf) file and make sure the `s3_consumer_lambda_function_code_path` variable is pointing to the folder containing the python code for lecture 2. The path should be as follows: `./lambda_code/lecture_2`.
 3. Go to [lecture_2.tf](lecture_2.tf), find the aws lambda function configuration, under environment variables update the S3 bucket variable to point to the bucket name variable in [variables.tf](variables.tf).
-4. Preview the changes: `terraform plan`
-5. Deploy changes: `terraform apply`
-6. Upload a new file to the S3 bucket.
-7. View logs:
+4. Run `terraform init` to import the archive plugin.
+5. Preview the changes: `terraform plan`
+6. Deploy changes: `terraform apply`
+7. Upload a new file to the S3 bucket.
+8. View logs:
    1. Open the Lambda function in the AWS Console. 
    2. Click on monitoring and view the Lambda Function logs in CloudWatch. 
    3. Open the CloudWatch log stream, and you should see that our application has run and printed a message saying: `success!!!`.
