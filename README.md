@@ -38,6 +38,8 @@ In this lecture you should configure the AWS CLI, initiate terraform and deploy 
 ### Lecture 2
 In this lecture we will create a lambda function that will run every time a file is uploaded to our S3 bucket.
 
+> All the lambda function code for each lecture can be found under [lambda_code](lambda_code).
+
 1. Uncomment the code in [lecture_2.tf](lecture_2.tf).
 2. Open the the [variables.tf](variables.tf) file and make sure the `s3_consumer_lambda_function_code_path` variable is pointing to the folder containing the python code for lecture 2. The path should be as follows: `./lambda_code/lecture_2`.
 3. Go to [lecture_2.tf](lecture_2.tf), find the aws lambda function configuration, under environment variables update the S3 bucket variable to point to the bucket name variable in [variables.tf](variables.tf).
@@ -64,7 +66,34 @@ In this lecture we will create a DynamoDB table and update our lambda function t
 
 
 ### Lecture 4
-...
+In this lecture we will create a lambda function which can get a single object from the database, given an id. 
+We will then create an API Gateway where we will add an endpoint connected to the lambda function. 
+This way we will be able to hit an API endpoint and get an object from the database in return.
+
+1. Uncomment the code in [lecture_4.tf](lecture_4.tf), including the line comment a line: 128.
+2. In the [lecture_4.tf](lecture_4.tf) file find the `api_gateway_invoke_db_reader_lambda_permission` and under `function_name`, get the lambda function name from the `db_reader_lambda`.
+3. Anywhere in the [lecture_4.tf](lecture_4.tf) file create an [terraform output](https://www.terraform.io/docs/language/values/outputs.html) with the value of the `demo_env` invoke URL.
+4. Find the `birds_resource` resource in [lecture_4.tf](lecture_4.tf) and add a string path under `path_part`. Try to keep it simple without any special characters, like "birds" or something.
+5. Preview the changes: `terraform plan`
+6. Deploy changes: `terraform apply`
+7. The URL you can use to access the API should be printed in the terminal. Copy that URL and paste it in your web browser, followed by `/` and the path you wrote in step 4, followed by `/` and an object id provided in the [json file](lambda_code/birds.json). The complete URL should look something like this: https://xk5x3cs7ik.execute-api.eu-central-1.amazonaws.com/demo/birds/079b42b8-a1ab-11eb-bcbc-0242ac130002.
+8. See if you get a JSON object in return from the URL in step 7. If so, then you have a working API 👏🏼.
+
+
+### Extra
+In this lecture you should create your own terraform code to add a new endpoint to the existing API from lecture 4. 
+This endpoint should be of type HTTP GET, and should return a JSON list of all the objects in the database. 
+You will find the python code in [this folder](lambda_code/lecture_extra).
+
+1. Create a new `.tf` file in the project root folder.
+2. In your new terraform file, add all the necessary terraform code for a lambda function (TIP: copy much of the code from [lecture_4.tf](lecture_4.tf)).
+   1. You can reuse the `db_reader_lambda_iam_role` since this contains all the access you need.
+   2. In your `aws_lambda_function` make sure to use "get_all_birds" as the `function_name` and "get_all_birds.lambda_handler" as `handler`.
+   3. In your `archive_file`, point to the correct folder where the code is stored.
+3. Create your API endpoint: Since the API is created beforehand you only need to create three new resources based on the one in [lecture_4.tf](lecture_4.tf):
+   1. `aws_api_gateway_method`: Change the `resource_id` to point to the root resource: `birds_resource` and remove request_parameters.
+   2. `aws_api_gateway_integration`: Change these parameters accordingly: `http_method`, `resource_id` and `uri`.
+   3. `aws_lambda_permission`: `function_name` should point to your new lambda function definition.
 
 ## Cleanup
 1. Empty S3 bucket using the AWS Console
