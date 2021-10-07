@@ -64,16 +64,14 @@ In this lecture we will create a DynamoDB table and update our lambda function t
 2. Set DynamoDB table name: Open the [variables.tf](variables.tf) file and change the `dynamodb_table_name` value from `<YOUR_TABLE_NAME>`, to whatever you want to call your DynamoDB table.
 3. Go into the [lecture_2.tf](lecture_2.tf) file, find the aws lambda function configuration, under environment variables update the DB_NAME variable to get the database name from the terraform resource: `my_dynamodb_table` located in [lecture_3.tf](lecture_3.tf).
    1. In the example bellow `birds_resource` retrieves two properties from the `birds_api` resource:
-   
+
    ```terraform
     resource "aws_api_gateway_rest_api" "birds_api" {
       name = "birds_api"
     }
 
-    resource "aws_api_gateway_resource" "birds_resource" {
-    parent_id   = aws_api_gateway_rest_api.birds_api.root_resource_id
-    path_part   = ""
-    rest_api_id = aws_api_gateway_rest_api.birds_api.id
+    output "birds_resource" {
+      value = aws_api_gateway_rest_api.birds_api.name
     }
     ```
 4. Preview the changes: `terraform plan`
