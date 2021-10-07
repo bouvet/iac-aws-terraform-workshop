@@ -94,6 +94,9 @@ In this lecture you should create your own terraform code to add a new endpoint 
 This endpoint should be of type HTTP GET, and should return a JSON list of all the objects in the database. 
 You will find the python code in [this folder](lambda_code/lecture_extra).
 
+> Keep in mind that every terraform resource has to have a unique set of labels (type and name). 
+> This is important for this lecture since you are going to create multiple new terraform resources of the same type.
+
 1. Create a new `.tf` file in the project root folder.
 2. In your new terraform file, add all the necessary terraform code for a lambda function (TIP: copy much of the code from [lecture_4.tf](lecture_4.tf)).
    1. You can reuse the `db_reader_lambda_iam_role` since this contains all the access you need.
@@ -103,6 +106,9 @@ You will find the python code in [this folder](lambda_code/lecture_extra).
    1. `aws_api_gateway_method`: Change the `resource_id` to point to the root resource: `birds_resource` and remove request_parameters.
    2. `aws_api_gateway_integration`: Change these parameters accordingly: `http_method`, `resource_id` and `uri`.
    3. `aws_lambda_permission`: `function_name` should point to your new lambda function definition.
+4. Preview the changes: `terraform plan`
+5. Deploy changes: `terraform apply`
+6. Test your new endpoint to retrieve a list of objects.
 
 ## Cleanup
 1. Empty S3 bucket using the AWS Console
