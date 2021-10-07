@@ -86,7 +86,7 @@ In this lecture we will create a lambda function which can get a single object f
 We will then create an API Gateway where we will add an endpoint connected to the lambda function. 
 This way we will be able to hit an API endpoint and get an object from the database in return.
 
-1. Uncomment the code in [lecture_4.tf](lecture_4.tf), including the line comment a line: 128.
+1. Uncomment the code in [lecture_4.tf](lecture_4.tf), including the line comment on line: 128.
 2. In the [lecture_4.tf](lecture_4.tf) file find the `api_gateway_invoke_db_reader_lambda_permission` and under `function_name`, get the lambda function name from the `db_reader_lambda`.
 3. Anywhere in the [lecture_4.tf](lecture_4.tf) file create an [terraform output](https://www.terraform.io/docs/language/values/outputs.html) with the value of the `demo_env` invoke URL.
 4. Find the `birds_resource` resource in [lecture_4.tf](lecture_4.tf) and add a string path under `path_part`. Try to keep it simple without any special characters, like "birds" or something.

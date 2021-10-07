@@ -4,7 +4,7 @@
 #######################################################################
 # Lambda function resources #
 resource "aws_iam_role" "db_reader_lambda_iam_role" {
-  name = "db_reader_lambda_iam_role"
+  name = "${var.my_name}db_reader_lambda_iam_role"
 
   assume_role_policy = <<EOF
 {
@@ -59,7 +59,7 @@ data "archive_file" "db_reader_lambda_zip" {
 
 resource "aws_lambda_function" "db_reader_lambda" {
   filename      = "./lambda_code/lecture_4/lambda.zip"
-  function_name = "db_reader"
+  function_name = "${var.my_name}_db_reader"
   role          = aws_iam_role.db_reader_lambda_iam_role.arn
   handler       = "db_reader.lambda_handler"
 
@@ -78,7 +78,7 @@ resource "aws_lambda_function" "db_reader_lambda" {
 #######################################################################
 # API Gateway #
 resource "aws_api_gateway_rest_api" "birds_api" {
-  name = "birds_api"
+  name = "${var.my_name}_birds_api"
 }
 
 # creating the '/birds' resource
