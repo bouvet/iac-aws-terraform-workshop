@@ -107,7 +107,7 @@ You will find the python code in [this folder](lambda_code/lecture_extra).
 1. Create a new `.tf` file in the project root folder.
 2. In your new terraform file, add all the necessary terraform code for a lambda function (TIP: copy much of the code from [lecture_4.tf](lecture_4.tf)).
    1. You can reuse the `db_reader_lambda_iam_role` since this contains all the access you need.
-   2. In your `aws_lambda_function` make sure to use "get_all_birds" as the `function_name` and "get_all_birds.lambda_handler" as `handler`.
+   2. In your `aws_lambda_function` make sure to use "get_all_birds.lambda_handler" as `handler`.
    3. In your `archive_file`, point to the correct folder where the code is stored.
 3. Create your API endpoint: Since the API is created beforehand you only need to create three new resources based on the one in [lecture_4.tf](lecture_4.tf):
    1. `aws_api_gateway_method`: Change the `resource_id` to point to the root resource: `birds_resource` and remove request_parameters.
