@@ -1,8 +1,5 @@
 # IaC AWS Terraform Workshop
-
-> WORK IN PROGRESS
-
-This repo contains code used for a workshop about IaC using Terraform.
+This repository contains code used for a workshop about IaC using Terraform.
 
 ## prerequisite
 - Terraform:
@@ -11,11 +8,18 @@ This repo contains code used for a workshop about IaC using Terraform.
 - AWS CLI:
   - [Download the CLI for your OS](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
   - You should be able to run: `aws --version`
-- AWS Console:
-  - Login to the AWS console: https://console.aws.amazon.com/
 - Install some form of terraform extension for your idea. This makes it easier to find any syntax errors.
   - VS Code: https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform
   - IntelliJ plugin: https://plugins.jetbrains.com/plugin/7808-terraform-and-hcl
+
+
+#### Fist time login to the AWS Console
+1. See if you have received AWS credentials from the course leader (you should receive this shortly before the course start).
+   1. This should contain username and password for the AWS Console and access keys.
+2. Go to the [AWS Console](https://eu-central-1.console.aws.amazon.com).
+3. Choose to sign in as IAM user and type in `bouvet-ost-tech1` as AccountID and hit "Next".
+4. Under "IAM user name" and "Password" type in the username and password you received from the course leader.
+5. Create a new password.
 
 
 ### Lecture 1
@@ -25,7 +29,7 @@ In this lecture you should configure the AWS CLI, initiate terraform and deploy 
 
 1. Configure aws: 
    1. Run `aws configure` 
-   2. Type in your personal IAM credentials (`Access Key ID` and `Secret Access Key`). 
+   2. Type in your personal access keys (`Access Key ID` and `Secret Access Key`) you received from the course leader. 
    3. When asked about default region type: `eu-central-1` and set default output format to `json`.
 2. Clone this repository
 3. Open the code in your editor of choice.
@@ -96,7 +100,7 @@ This way we will be able to hit an API endpoint and get an object from the datab
 8. See if you get a JSON object in return from the URL in step 7. If so, then you have a working API 👏🏼.
 
 
-### Extra
+### Extra 🤓
 In this lecture you should create your own terraform code to add a new endpoint to the existing API from lecture 4. 
 This endpoint should be of type HTTP GET, and should return a JSON list of all the objects in the database. 
 You will find the python code in [this folder](lambda_code/lecture_extra).
@@ -117,6 +121,6 @@ You will find the python code in [this folder](lambda_code/lecture_extra).
 5. Deploy changes: `terraform apply`
 6. Test your new endpoint to retrieve a list of objects.
 
-## Cleanup
+## Cleanup 🧹
 1. Empty S3 bucket using the AWS Console
 2. Run `terraform destory`
