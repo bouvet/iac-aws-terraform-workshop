@@ -6,7 +6,7 @@ DB_NAME = os.environ["DB_NAME"]
 
 
 def lambda_handler(event, context):
-  dynamodb = boto3.resource('dynamodb', region='eu-central-1')
+  dynamodb = boto3.resource('dynamodb')
 
   table = dynamodb.Table(DB_NAME)
 
