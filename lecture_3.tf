@@ -1,8 +1,8 @@
 # Lecture 3:
 
-
+/*
 resource "aws_dynamodb_table" "my_dynamodb_table" {
-  name         = var.dynamodb_table_name
+  name         = "${var.my_name}-${var.dynamodb_table_name}"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "id"
 
@@ -40,4 +40,4 @@ resource "aws_iam_role_policy_attachment" "dynamodb_and_s3_policy_attachment" {
   policy_arn = aws_iam_policy.s3_consumer_lambda_additional_policies.arn
   role       = aws_iam_role.s3_consumer_lambda_iam_role.name
 }
-
+*/

@@ -21,6 +21,8 @@ This repo contains code used for a workshop about IaC using Terraform.
 ### Lecture 1
 In this lecture you should configure the AWS CLI, initiate terraform and deploy an S3 Bucket.
 
+> Keep in mind that all the participants in this workshop will use the same AWS account, so try to give your resources names that you can easily identify.
+
 1. Configure aws: 
    1. Run `aws configure` 
    2. Type in your personal IAM credentials (`Access Key ID` and `Secret Access Key`). 
@@ -28,11 +30,12 @@ In this lecture you should configure the AWS CLI, initiate terraform and deploy 
 2. Clone this repository
 3. Open the code in your editor of choice.
 4. Set S3 bucket name: Open the [variables.tf](variables.tf) file and change the `s3_bucket_name` value from `<YOUR_BUCKET_NAME>`, to whatever you want to call your S3 bucket.
-5. Open [lecture_1.tf](lecture_1.tf) and read the instructions to set the S3 bucket name.
-6. Initiate Terraform: Open your terminal in the project folder and run `terraform init`.
-7. Preview what will happen if you deploy this code: `terraform plan`.
-8. Deploy your S3 bucket: `terraform apply` (when asked if you want to apply this code, type `yes` and hit enter).
-9. Login to the [AWS Console and find your S3 bucket](https://s3.console.aws.amazon.com/s3/home?region=eu-central-1). Try uploading any text file to this bucket.
+5. While in the [variables.tf](variables.tf) file, update the value in the `my_name` variable to your own name (without spaces).
+6. Open [lecture_1.tf](lecture_1.tf) and read the instructions to set the S3 bucket name.
+7. Initiate Terraform: Open your terminal in the project folder and run `terraform init`.
+8. Preview what will happen if you deploy this code: `terraform plan`.
+9. Deploy your S3 bucket: `terraform apply` (when asked if you want to apply this code, type `yes` and hit enter).
+10. Login to the [AWS Console and find your S3 bucket](https://s3.console.aws.amazon.com/s3/home?region=eu-central-1). Try uploading any text file to this bucket.
 
 
 ### Lecture 2
@@ -59,10 +62,16 @@ In this lecture we will create a DynamoDB table and update our lambda function t
 
 1. Uncomment the code in [lecture_3.tf](lecture_3.tf).
 2. Set DynamoDB table name: Open the [variables.tf](variables.tf) file and change the `dynamodb_table_name` value from `<YOUR_TABLE_NAME>`, to whatever you want to call your DynamoDB table.
-3. Preview the changes: `terraform plan`
-4. Deploy changes: `terraform apply`
-5. Upload the [json file](lambda_code/birds.json) to your S3 bucket.
-6. Open the DynamoDB table in the AWS Console. The content of the file should now be stored in the DynamoDB table.
+3. Go into the [lecture_2.tf](lecture_2.tf) file, find the aws lambda function configuration, under environment variables update the DB_NAME variable to get the database name from the terraform resource: `my_dynamodb_table` located in [lecture_3.tf](lecture_3.tf).
+   1. example:
+   
+   ```terraform
+    resource s3 "te"{}
+    ```
+4. Preview the changes: `terraform plan`
+5. Deploy changes: `terraform apply`
+6. Upload the [json file](lambda_code/birds.json) to your S3 bucket.
+7. Open the DynamoDB table in the AWS Console. The content of the file should now be stored in the DynamoDB table.
 
 
 ### Lecture 4

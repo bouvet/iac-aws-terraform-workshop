@@ -1,8 +1,8 @@
 # Lecture 2:
 
-
+/*
 resource "aws_iam_role" "s3_consumer_lambda_iam_role" {
-  name = "iam_for_lambda"
+  name = "${var.my_name}_iam_for_lambda"
 
   assume_role_policy = <<EOF
 {
@@ -34,7 +34,7 @@ data "archive_file" "s3_consumer_lambda_zip" {
 
 resource "aws_lambda_function" "s3_consumer_lambda" {
   filename      = "${var.s3_consumer_lambda_function_code_path}/lambda.zip"
-  function_name = "my_lambda"
+  function_name = "${var.my_name}_my_lambda"
   role          = aws_iam_role.s3_consumer_lambda_iam_role.arn
   handler       = "my_lambda.lambda_handler"
 
@@ -44,8 +44,8 @@ resource "aws_lambda_function" "s3_consumer_lambda" {
 
   environment {
     variables = {
-      DB_NAME        = var.dynamodb_table_name
-      S3_BUCKET_NAME = var.s3_bucket_name
+      DB_NAME        = ""
+      S3_BUCKET_NAME = ""
     }
   }
 }
@@ -68,4 +68,4 @@ resource "aws_s3_bucket_notification" "file_uploaded_notification" {
 
   depends_on = [aws_lambda_permission.s3_invoke_lambda_permission]
 }
-
+*/

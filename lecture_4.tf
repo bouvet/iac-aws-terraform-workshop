@@ -1,6 +1,6 @@
 # Lecture 4:
 
-
+/*
 #######################################################################
 # Lambda function resources #
 resource "aws_iam_role" "db_reader_lambda_iam_role" {
@@ -69,7 +69,7 @@ resource "aws_lambda_function" "db_reader_lambda" {
 
   environment {
     variables = {
-      DB_NAME = var.dynamodb_table_name
+      DB_NAME = aws_dynamodb_table.my_dynamodb_table.name
     }
   }
 }
@@ -84,7 +84,7 @@ resource "aws_api_gateway_rest_api" "birds_api" {
 # creating the '/birds' resource
 resource "aws_api_gateway_resource" "birds_resource" {
   parent_id   = aws_api_gateway_rest_api.birds_api.root_resource_id
-  path_part   = "birds"
+  path_part   = ""
   rest_api_id = aws_api_gateway_rest_api.birds_api.id
 }
 
@@ -120,13 +120,13 @@ resource "aws_api_gateway_integration" "lambda_integration_db_reader" {
 resource "aws_lambda_permission" "api_gateway_invoke_db_reader_lambda_permission" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.db_reader_lambda.function_name
+  function_name = ""
   principal     = "apigateway.amazonaws.com"
 
 # Uncomment the three lines bellow. I had to do some special line commenting to ensure the source_arn variable would not not escape the block comment.
-
-  source_arn = "${aws_api_gateway_rest_api.birds_api.execution_arn}/*/*/*"
-
+*/
+//  source_arn = "${aws_api_gateway_rest_api.birds_api.execution_arn}/*/*/*"
+/*
 }
 
 # creating a deployment of our API Gateway
@@ -140,8 +140,5 @@ resource "aws_api_gateway_deployment" "demo_env" {
 }
 
 # outputs the deployment URL
-output "api_stage_endpoint" {
-  value = aws_api_gateway_deployment.demo_env.invoke_url
-}
 
-
+*/
