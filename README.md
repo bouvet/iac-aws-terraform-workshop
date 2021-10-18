@@ -34,7 +34,7 @@ In this lecture you should configure the AWS CLI, initiate terraform and deploy 
 2. Clone this repository
 3. Open the code in your editor of choice.
 4. Set S3 bucket name: Open the [variables.tf](variables.tf) file and change the `s3_bucket_name` value from `<YOUR_BUCKET_NAME>`, to whatever you want to call your S3 bucket.
-5. While in the [variables.tf](variables.tf) file, update the value in the `my_name` variable to your own name (without spaces).
+5. While in the [variables.tf](variables.tf) file, update the value in the `my_name` variable to your AWS username.
 6. Open [lecture_1.tf](lecture_1.tf) and read the instructions to set the S3 bucket name.
 7. Initiate Terraform: Open your terminal in the project folder and run `terraform init`.
 8. Preview what will happen if you deploy this code: `terraform plan`.

@@ -1,5 +1,5 @@
 variable "my_name" {
-  description = "Your name, this is to make it easy to identify your resources in AWS."
+  description = "Your AWS username, this is to make it easy to identify your resources in AWS."
   default = "<YOUR_NAME_HERE>"
 }
 
