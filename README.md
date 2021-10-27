@@ -67,8 +67,8 @@ In this lecture we will create a DynamoDB table and update our lambda function t
 1. Uncomment the code in [lecture_3.tf](lecture_3.tf).
 2. Set DynamoDB table name: Open the [variables.tf](variables.tf) file and change the `dynamodb_table_name` value from `<YOUR_TABLE_NAME>`, to whatever you want to call your DynamoDB table.
 3. In [variables.tf](variables.tf) update the `s3_consumer_lambda_function_code_path` variable to point to the python for lecture three. The path should be as follows: `./lambda_code/lecture_3`.
-4. Go into the [lecture_2.tf](lecture_2.tf) file, find the aws lambda function configuration, under environment variables update the DB_NAME variable to get the database name from the terraform resource: `my_dynamodb_table` located in [lecture_3.tf](lecture_3.tf).
-   1. In the example bellow the `api_name` output retrieves the name property from the `birds_api` resource:
+4. Go to [lecture_2.tf](lecture_2.tf) and find the `s3_consumer_lambda` resource. Set the environment variable `DB_NAME` to get the name property of the resource: `my_dynamodb_table` located in [lecture_3.tf](lecture_3.tf).
+   1. The example below shows how to retrieve properties from a terraform resources. The output `api_name` retrieves the name property from the `birds_api` resource.
 
    ```terraform
     resource "aws_api_gateway_rest_api" "birds_api" {
